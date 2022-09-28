@@ -1,5 +1,5 @@
 # Приложение TODO list
-### Стэк технологий
+### Стек технологий
 Backend:
 - Node.js
 - Express
