@@ -5,13 +5,15 @@ const cors = require('cors');
 const taskRouter = require('./routes/task-router');
 const authRouter = require('./routes/auth-router');
 const usersRouter = require('./routes/users-router');
+const roleMiddleware = require('./middleware/roleMiddleware')
+const { roles } = require('./data')
 
 const PORT = process.env.PORT || 80;
 
 app.use(cors());
 app.use(express.json());
 app.use('/api/auth', authRouter);
-app.use('/api', taskRouter);
+app.use('/api', roleMiddleware([roles.SUBORDINATE, roles.SUPERVISOR]), taskRouter);
 app.use('/api', usersRouter);
 
 const start = () => {

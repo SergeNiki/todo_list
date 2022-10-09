@@ -3,11 +3,13 @@ const router = new Router();
 const authController = require('./../controllers/auth-controller');
 const { check } = require('express-validator');
 const authenticateToken = require('./../middleware/authMiddleware');
+const roleMiddleware = require('./../middleware/roleMiddleware')
+const { roles } = require('./../data')
 
 router.get('/me', authenticateToken, authController.authMe);
 router.post('/login', authController.login);
 router.post(
-  '/registration',
+  '/registration', roleMiddleware([roles.ADMIN]),
   [
     check('first_name', 'Имя пользователя не может быть пустым').notEmpty(),
     check('last_name', 'Фамилия пользователя не может быть пустым').notEmpty(),
