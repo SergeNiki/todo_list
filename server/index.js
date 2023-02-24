@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 80;
 app.use(cors());
 app.use(express.json());
 app.use('/api/auth', authRouter);
-app.use('/api', roleMiddleware([roles.SUBORDINATE, roles.SUPERVISOR]), taskRouter);
+app.use('/api/task', roleMiddleware([roles.SUBORDINATE, roles.SUPERVISOR]), taskRouter);
 app.use('/api', usersRouter);
 
 const start = () => {

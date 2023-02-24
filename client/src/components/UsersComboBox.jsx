@@ -7,14 +7,13 @@ import { Context } from '../index';
 const UsersComboBox = observer(
   ({ usersRole, setComboBox, labelComboBox, sizeInput, readOnly }) => {
     const { usersStore } = useContext(Context);
-    useEffect(() => {
-      usersStore.setUsers(usersRole);
-      return () => {
-        setComboBox(null);
-      };
-    }, []);
+    const { setUsers, usersList } = usersStore;
 
-    const usersOptions = usersStore.usersList.map((user) => {
+    useEffect(() => {
+      setUsers(usersRole);
+    }, [usersRole, setUsers]);
+
+    const usersOptions = usersList.map((user) => {
       return {
         id: user.id,
         label: `${user.first_name} ${user.last_name} ${

@@ -3,9 +3,9 @@ const router = new Router();
 const taskController = require('../controllers/task-controller');
 const authenticateToken = require('./../middleware/authMiddleware');
 
-router.get('/task', authenticateToken, taskController.getUserTasks);
-router.get('/task/:id', authenticateToken, taskController.getTaskData);
-router.post('/task', authenticateToken, taskController.createTask);
-router.put('/task', authenticateToken, taskController.updateTask);
+router.get('/', authenticateToken, taskController.getUserTasks);
+router.get('/:id', authenticateToken, taskController.getTaskData);
+router.post('/', authenticateToken, taskController.createTask);
+router.put('/', authenticateToken, taskController.updateTask);
 
 module.exports = router;
